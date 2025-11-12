@@ -13,11 +13,11 @@ on:
       ipaddr:
         description: '请输入管理IP（静态地址时必填）'
         required: true
-        default: '192.168.5.88'
+        default: ''
       gateway:
         description: '请输入默认网关（静态地址时必填）'
         required: true
-        default: '192.168.5.1'
+        default: ''
 
 env:
   VERSION: 24.10.4
@@ -121,7 +121,7 @@ jobs:
           
           🔒 密码： 无
           
-          🌐 IP： ${{ inputs.network_settings == 'static' && inputs.ipaddr || '单网口-动态获取（从上级路由找寻）；多网口-IP：192.168.100.1' }}
+          🌐 IP： ${{ inputs.network_settings == 'static' && inputs.ipaddr || '单网口-动态获取（从上级路由找寻）；多网口-IP：${{ inputs.ipaddr }}' }}
         files: |
           imagebuilder/bin/targets/armsr/armv8/*generic-rootfs.tar.gz
       env:
