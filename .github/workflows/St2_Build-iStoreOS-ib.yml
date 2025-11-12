@@ -237,7 +237,7 @@ jobs:
           openwrt_board: ${{ inputs.openwrt_board }}
           openwrt_kernel: ${{ inputs.openwrt_kernel }}
           auto_kernel: ${{ inputs.auto_kernel }}
-          kernel_repo: hkpc/kernel
+          kernel_repo: v2clash/build-armbian
           kernel_usage: stable
           builder_name: pdd
 
