@@ -237,9 +237,9 @@ jobs:
           openwrt_board: ${{ inputs.openwrt_board }}
           openwrt_kernel: ${{ inputs.openwrt_kernel }}
           auto_kernel: ${{ inputs.auto_kernel }}
-          kernel_repo: ophub/kernel
+          kernel_repo: hkpc/kernel
           kernel_usage: stable
-          builder_name: kwonelee
+          builder_name: pdd
 
       - name: 📜 调整.img.gz 文件名
         id: rename
