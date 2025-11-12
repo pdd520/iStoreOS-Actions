@@ -120,8 +120,10 @@ jobs:
           👤 用户名： root
           
           🔒 密码： 无
-          
-          🌐 IP： ${{ inputs.network_settings == 'static' && inputs.ipaddr || '单网口-动态获取（从上级路由找寻）；多网口-IP：${{ inputs.ipaddr }} → 网关：${{ inputs.gateway }}' }}
+          ${{ github.event.inputs.network_settings == 'static' && format('
+          🌐 管理IP： {0}
+          🚪 默认网关：{1}', github.event.inputs.ipaddr, github.event.inputs.gateway) || '
+          🌐 IP： 单网口-动态获取（从上级路由找寻）' }}
         files: |
           imagebuilder/bin/targets/armsr/armv8/*generic-rootfs.tar.gz
       env:
