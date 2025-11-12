@@ -39,12 +39,12 @@ jobs:
         echo "当前网络配置路径"
         CONFIG_PATH="./files/etc/uci-defaults/99-custom.sh"
         echo $CONFIG_PATH
-        if [ "${{ inputs.network_settings }}" = "static" ]; then
+        if [ "${{ github.event.inputs.network_settings }}" = "static" ]; then
            echo "删除网络设置-dhcp"
            sed -i '34,111d' "$CONFIG_PATH"
            echo "替换默认配置"
-           sed -i "/ipaddr/s/192.168.5.88/${{ inputs.ipaddr }}/g" "$CONFIG_PATH"
-           sed -i "/gateway/s/192.168.5.1/${{ inputs.gateway }}/g" "$CONFIG_PATH"
+           sed -i "/ipaddr/s/192.168.5.88/${{ github.event.inputs.ipaddr }}/g" "$CONFIG_PATH"
+           sed -i "/gateway/s/192.168.5.1/${{ github.event.inputs.gateway }}/g" "$CONFIG_PATH"
         else
            echo "删除网络设置-static"
            sed -i '26,32d' "$CONFIG_PATH"
@@ -107,7 +107,7 @@ jobs:
     - name: 🚀 上传到 Release
       uses: softprops/action-gh-release@v2.2.1
       with:
-        tag_name: iStoreOS-${{ env.VERSION }}-RELEASE-${{ inputs.network_settings }}
+        tag_name: iStoreOS-${{ env.VERSION }}-RELEASE-${{ github.event.inputs.network_settings }}
         body: |
           📌 版本： iStoreOS-${{ env.VERSION }}-RELEASE（imagebuilder构建，稳定版）
           
